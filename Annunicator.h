@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #ifndef Annunicator_H
 #define Annunicator_H
+#include "Led.h"
+
 
 const int led_red=A0;//RED
 const int led_white=A1;//WHITE
@@ -10,17 +12,26 @@ const int led_green=A3;//GREEN
 
 class Annunicator
 {
+
   public:
-    Annunicator();// constructor
-    void initled();
+    Annunicator();
+    void init();
     void flashRedLed(int duration, int flashDuration);
-    void checkLedStatus(Print  &print);
+    void flashWhitedLed(int duration, int flashDuration);
+    void flashBlueLed(int duration, int flashDuration);
+    void flashGreenLed(int duration, int flashDuration);
+
+    
+    void checkLedStatus();
+  
   private:
-    long _led_red_duration =0;
-    long _led_red_flashDuration =0;
-    long _led_red_start =0;
-    long _led_red_next_check =0;
-    boolean _led_red_status = false;
+  Led _leds[4] = {
+    Led(led_red),
+    Led(led_white),
+    Led(led_blue),
+    Led(led_green),
+
+  };
     
 
 };
