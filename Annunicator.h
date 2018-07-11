@@ -25,13 +25,12 @@ class Annunicator
     void checkLedStatus();
   
   private:
-  Led _leds[4] = {
-    Led(led_red),
-    Led(led_white),
-    Led(led_blue),
-    Led(led_green),
-
-  };
+    Led _leds[4] = {
+      Led(led_red,"RED"),
+      Led(led_white,"WHITE"),
+      Led(led_blue,"BLUE"),
+      Led(led_green,"GREEN")
+    };
     
 
 };

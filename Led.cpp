@@ -1,12 +1,13 @@
 #include "Arduino.h"
 #include "Led.h"
+#include "Debug.h"
+const boolean DEBUG=false;
 
-
-Led::Led(int pin)
+Led::Led(int pin, String name)
 {
   _pin=pin;
-  
-    
+  _name = name;
+     
 }
 
 /*
@@ -34,10 +35,10 @@ void Led::flash(int duration, int flashDuration) {
 void Led::checkLedStatus() {
   long currentTime = millis();
   
-  if(_start >= 0 && _duration >=0) {
+  if(_start > 0 && _duration >0) {
     long endTime = _duration+_start;
     if(currentTime >= (endTime) ) {//stops
-      Serial.println("-  time to stop");  
+     debug("led "+_name+" -  time to stop");  
       digitalWrite(_pin,LOW); 
       _start=0;
       _next_check=0;
@@ -55,14 +56,17 @@ void Led::checkLedStatus() {
         _status = true;
       }
       _next_check=currentTime + _flashDuration;
-      Serial.println(" - time to blink");
+      debug("led "+_name+" -  time to blink");  
     } else {
-      Serial.println(" - nothing to do ");
-
+      debug("led "+_name+" -  nothing to do");  
     }
 
-  }else {
-    Serial.println(" - led is not started");
   }
 
+}
+/**
+ * DEBUG MESSAGE
+ */
+void Led::debug(String message) {
+  Debug::println(message);
 }

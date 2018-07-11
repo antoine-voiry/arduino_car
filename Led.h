@@ -9,7 +9,7 @@ A class to handle the led of the Annunicator
 class Led
 {
   public:    
-    Led(int pin);// constructor
+    Led(int pin,String name);// constructor
     void init();
     void flash(int duration, int flashDuration);
     void checkLedStatus();
@@ -20,6 +20,8 @@ class Led
     long _next_check =0;
     boolean _status = false;
     int _pin =0;
+    String _name="";
+    void debug(String message);
    // Print & _print;
     
 

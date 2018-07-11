@@ -5,20 +5,13 @@
 
 
 Annunicator::Annunicator(){
-
-  /*pinMode(led_red,OUTPUT);
-  pinMode(led_white,OUTPUT);
-  pinMode(led_blue,OUTPUT);
-  pinMode(led_green,OUTPUT);
-  */
-  
 }
 
 /*
 Init led
 */
 void Annunicator::init() {
-  for(int i = 0; i< sizeof(_leds); i++) {
+  for(int i = 0; i< 4; i++) {
     _leds[i].init();
   }
 }
@@ -45,7 +38,8 @@ void Annunicator::flashGreenLed(int duration, int flashDuration) {
 
 
 void Annunicator::checkLedStatus() {
-    for(int i = 0; i< sizeof(_leds); i++) {
+
+    for(int i = 0; i< 4; i++) {
     _leds[i].checkLedStatus();
   }
 }
